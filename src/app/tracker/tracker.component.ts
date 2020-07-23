@@ -39,7 +39,8 @@ export class TrackerComponent implements OnInit {
   ngOnInit(): void {
     this.trackerService.getProjects().subscribe(
       (value: any) => this.projects = value.projects.map(prj => new Project(prj.id, prj.name)),
-      error => {}
+      error => {},
+      () => this.trackerService.projects = this.projects
     );
     this.getTasks();
   }
@@ -68,5 +69,9 @@ export class TrackerComponent implements OnInit {
         this.tasksDoing.reverse();
       }
     );
+  }
+
+  resetForm() {
+    this.newTask.reset();
   }
 }

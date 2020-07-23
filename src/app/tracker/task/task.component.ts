@@ -19,6 +19,8 @@ export class TaskComponent implements OnInit {
   timer: number;
   timerStr: string;
 
+  projectName: string;
+
   constructor(
     private trackerService: TrackerService,
     private matSnackBar: MatSnackBar
@@ -35,7 +37,7 @@ export class TaskComponent implements OnInit {
         this.setTimer();
       }, 1000);
     }
-
+    this.getProjectName();
   }
   setTimer() {
     this.timer += 1000
@@ -75,4 +77,18 @@ export class TaskComponent implements OnInit {
     );
   }
 
+  delete() {
+    this.trackerService.deleteTask(this.task.uuid).subscribe(
+      value => {},
+      error => {},
+      () => {
+        this.matSnackBar.open('Task deleted', 'Dismiss', {duration:1000})
+        this.updated.emit();
+      }
+    );
+  }
+
+  getProjectName() {
+    this.projectName = this.trackerService.getProjectName(this.task.project);
+  }
 }

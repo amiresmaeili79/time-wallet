@@ -69,7 +69,7 @@
           <button mat-icon-button type="submit">
             <mat-icon>done</mat-icon>
           </button>
-          <button mat-icon-button type="button">
+          <button (click)="resetForm()" mat-icon-button type="button">
             <mat-icon>clear</mat-icon>
           </button>
         </mat-action-row>
@@ -87,8 +87,8 @@
       [task]="task">
 
     </app-task>
-    <div class="message">
-      <span *ngIf="tasksDoing.length === 0">You're free right now!</span>
+    <div *ngIf="tasksDoing.length === 0" class="message">
+      <span >You're free right now!</span>
       <br>
       <img src="../../assets/images/free.png" alt="free">
     </div>

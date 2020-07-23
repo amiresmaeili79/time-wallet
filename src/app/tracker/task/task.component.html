@@ -9,15 +9,11 @@
         <span>{{task.tag}}</span>
       </div>
       <div class="field">
-        <span class="tag">project</span>
-        <span>{{task.project}}</span>
+        <span class="tag">project:</span>
+        <span><b>{{projectName}}</b></span>
       </div>
     </mat-card-subtitle>
     <mat-card-content>
-      <div class="field">
-        <mat-icon>date_range</mat-icon>
-        <span>{{task.startTime}} to {{task.endTime}}</span>
-      </div>
       <div *ngIf="timerInterval === null" class="field time">
         <mat-icon>timelapse</mat-icon>
         <span>{{task.time}}</span>
@@ -26,15 +22,21 @@
         <mat-icon>timelapse</mat-icon>
         <span>{{timerStr}}</span>
       </div>
+
+      <div class="field">
+        <mat-icon>date_range</mat-icon>
+        <span>{{task.startTime}} to {{task.endTime}}</span>
+      </div>
+
     </mat-card-content>
     <mat-card-actions>
       <button *ngIf="timerInterval !== null" (click)="endTask()" matTooltip="pause" mat-icon-button>
         <mat-icon>pause</mat-icon>
       </button>
-      <button (click)="reDoTask()" matTooltip="resume" mat-icon-button>
+      <button *ngIf="timerInterval === null" (click)="reDoTask()" matTooltip="resume" mat-icon-button>
         <mat-icon>play_arrow</mat-icon>
       </button>
-      <button matTooltip="delete" mat-icon-button>
+      <button (click)="delete()" matTooltip="delete" mat-icon-button>
         <mat-icon>delete</mat-icon>
       </button>
     </mat-card-actions>

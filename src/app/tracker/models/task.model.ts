@@ -12,7 +12,13 @@ export class Task {
 
   readonly OPTIONS = {
     month: 'long', day: 'numeric', hour: 'numeric',
-    minute: 'numeric', timeZone: this.timeZone, hour12: false
+    minute: 'numeric', timeZone: this.timeZone, hour12: false,
+    hourCycle: 'h23'
+  };
+  readonly TIME_OPTIONS = {
+    hour: 'numeric', minute: 'numeric',
+    timeZone: this.timeZone, hour12: false,
+    hourCycle: 'h23'
   };
 
   constructor(task) {
@@ -54,7 +60,7 @@ export class Task {
     if (this._endTime.toLocaleDateString() !== this._startTime.toLocaleDateString()) {
       return this._endTime.toLocaleString('en-US', this.OPTIONS);
     } else {
-      return this._endTime.toLocaleTimeString('en-US', this.OPTIONS);
+      return this._endTime.toLocaleTimeString('en-US', this.TIME_OPTIONS);
     }
   }
 

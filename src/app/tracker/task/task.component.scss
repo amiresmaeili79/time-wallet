@@ -3,6 +3,10 @@
   mat-card-title {
     margin-bottom: 1rem;
   }
+  mat-card-subtitle {
+    display: flex;
+    justify-content: space-between;
+  }
   .field {
     display: flex;
     * {

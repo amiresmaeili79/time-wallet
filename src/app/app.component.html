@@ -1,5 +1,5 @@
 <mat-sidenav-container>
-  <mat-sidenav mode="push" #sidenav>
+  <mat-sidenav mode="over" #sidenav>
     <mat-toolbar class="banner-toolbar">
       <mat-toolbar-row>
         <div class="banner">
@@ -15,6 +15,13 @@
           timer
         </mat-icon>
         <a routerLink="tracker" >Time Tracker</a>
+      </mat-list-item>
+
+      <mat-list-item>
+        <mat-icon>
+          bar_chart
+        </mat-icon>
+        <a routerLink="report" >Work report</a>
       </mat-list-item>
     </mat-nav-list>
   </mat-sidenav>
