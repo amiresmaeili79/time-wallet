@@ -1,0 +1,37 @@
+<mat-sidenav-container>
+  <mat-sidenav mode="push" #sidenav>
+    <mat-toolbar class="banner-toolbar">
+      <mat-toolbar-row>
+        <div class="banner">
+          <span><b>Task manager app</b></span>
+          <br>
+          <span>Developed by Amir Esmaeil</span>
+        </div>
+      </mat-toolbar-row>
+    </mat-toolbar>
+    <mat-nav-list>
+      <mat-list-item>
+        <mat-icon>
+          timer
+        </mat-icon>
+        <a routerLink="tracker" >Time Tracker</a>
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <header>
+    <mat-toolbar>
+      <button
+        class="toggle-button"
+        (click)="sidenav.toggle()"
+        mat-icon-button>
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span>Time Tracker</span>
+    </mat-toolbar>
+  </header>
+
+  <main>
+    <router-outlet></router-outlet>
+  </main>
+</mat-sidenav-container>

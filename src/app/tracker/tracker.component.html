@@ -1,0 +1,108 @@
+<section class="tracker">
+  <h1>New task</h1>
+
+  <div class="new-task">
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Add a new task
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <form (ngSubmit)="submit()" [formGroup]="newTask">
+        <mat-form-field>
+          <mat-label>
+            Title
+          </mat-label>
+          <input formControlName="title" matInput type="text">
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>project</mat-label>
+          <mat-select formControlName="project">
+            <mat-option *ngFor="let prj of projects" [value]="prj.id">
+              {{prj.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>tag</mat-label>
+          <mat-select formControlName="tag">
+            <mat-option *ngFor="let t of tags"
+                        [value]="t">{{t}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <!--        <mat-form-field>-->
+        <!--          <mat-label>Start date</mat-label>-->
+        <!--          <input-->
+        <!--            [matDatepicker]="startPicker"-->
+        <!--            matInput formControlName="startDate">-->
+        <!--          <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>-->
+        <!--          <mat-datepicker #startPicker></mat-datepicker>-->
+        <!--        </mat-form-field>-->
+
+        <!--        <mat-form-field>-->
+        <!--          <mat-label>Start time</mat-label>-->
+        <!--          <input [format]="format"  matInput formControlName="startTime" [ngxTimepicker]="timeStart">-->
+        <!--          <ngx-material-timepicker #timeStart></ngx-material-timepicker>-->
+        <!--        </mat-form-field>-->
+
+
+        <!--        <mat-form-field>-->
+        <!--          <mat-label>End date</mat-label>-->
+        <!--          <input-->
+        <!--            [matDatepicker]="endPicker"-->
+        <!--            matInput formControlName="endDate">-->
+        <!--          <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>-->
+        <!--          <mat-datepicker #endPicker></mat-datepicker>-->
+        <!--        </mat-form-field>-->
+
+        <!--        <mat-form-field>-->
+        <!--          <mat-label>End time</mat-label>-->
+        <!--          <input [format]="format"  matInput formControlName="endTime" [ngxTimepicker]="endTime">-->
+        <!--          <ngx-material-timepicker #endTime></ngx-material-timepicker>-->
+        <!--        </mat-form-field>-->
+
+        <mat-action-row>
+          <button mat-icon-button type="submit">
+            <mat-icon>done</mat-icon>
+          </button>
+          <button mat-icon-button type="button">
+            <mat-icon>clear</mat-icon>
+          </button>
+        </mat-action-row>
+      </form>
+
+    </mat-expansion-panel>
+  </div>
+
+  <main>
+    <h1>Doing</h1>
+
+    <app-task
+      (updated)="getTasks()"
+      *ngFor="let task of tasksDoing"
+      [task]="task">
+
+    </app-task>
+    <div class="message">
+      <span *ngIf="tasksDoing.length === 0">You're free right now!</span>
+      <br>
+      <img src="../../assets/images/free.png" alt="free">
+    </div>
+    <hr>
+    <h1>Done</h1>
+    <app-task
+      (updated)="getTasks()"
+      *ngFor="let task of tasksDone"
+      [task]="task">
+
+    </app-task>
+    <div class="message">
+
+      <span *ngIf="tasksDone.length === 0">It's so lonely here! Add some tasks</span>
+    </div>
+  </main>
+</section>

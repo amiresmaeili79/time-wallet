@@ -1,0 +1,15 @@
+.task {
+  margin: 5px 0;
+  mat-card-title {
+    margin-bottom: 1rem;
+  }
+  .field {
+    display: flex;
+    * {
+      margin: 5px;
+    }
+  }
+  .time {
+    font-size: xx-large;
+  }
+}
