@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {UserService} from "./services/user.service";
+import {UserModel} from "./models/user.model";
 
 @Component({
   selector: 'app-root',
@@ -9,8 +11,12 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 export class AppComponent {
   title = 'time-tracker-front';
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private userService: UserService
   ) {
+    this.userService.getProfile().subscribe(
+      value => this.userService.updateUser(new UserModel(value))
+    );
   }
 
   submit() {

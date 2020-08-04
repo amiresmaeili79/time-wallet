@@ -14,11 +14,12 @@ import {MatNativeDateModule} from "@angular/material/core";
 import {NgxMaterialTimepickerModule} from "ngx-material-timepicker";
 import {MatButtonModule} from "@angular/material/button";
 import {TrackerService} from "./service/tracker.service";
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import { TaskComponent } from './task/task.component';
 import {MatCardModule} from "@angular/material/card";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {MatTooltipModule} from "@angular/material/tooltip";
+import {TokenInterceptor} from "../services/token.interceptor";
 
 
 @NgModule({
@@ -41,6 +42,13 @@ import {MatTooltipModule} from "@angular/material/tooltip";
     MatSnackBarModule,
     MatTooltipModule,
   ],
-  providers: [TrackerService]
+  providers: [
+    TrackerService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }
+  ]
 })
 export class TrackerModule { }

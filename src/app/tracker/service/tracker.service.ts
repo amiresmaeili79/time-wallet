@@ -17,7 +17,7 @@ export class TrackerService {
   }
 
   getProjects() {
-    return this.http.get(environment.api + 'tasks/project/');
+    return this.http.get(environment.api + 'projects/');
   }
   newTask(body: object) {
     return this.http.post(environment.api + 'tasks/', body);
@@ -28,11 +28,11 @@ export class TrackerService {
   getTimeZone() {
     return Intl.DateTimeFormat().resolvedOptions().timeZone;
   }
-  endTask(body) {
-    return this.http.put(environment.api + 'tasks/task/', body);
+  endTask(uuid, body) {
+    return this.http.put(environment.api + `tasks/${uuid}/`, body);
   }
   deleteTask(uuid: string) {
-    return this.http.delete(environment.api + 'tasks/task/'+uuid+'/');
+    return this.http.delete(environment.api + `tasks/${uuid}/`);
   }
   getProjectName(id: number) {
     return this.projects.filter(t => t.id === id)[0].name;

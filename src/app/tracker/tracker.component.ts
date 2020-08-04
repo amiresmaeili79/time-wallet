@@ -5,6 +5,7 @@ import {Project} from "./models/project.model";
 import {TrackerService} from "./service/tracker.service";
 import {Task} from "./models/task.model";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {UserService} from "../services/user.service";
 
 @Component({
   selector: 'app-tracker',
@@ -25,7 +26,8 @@ export class TrackerComponent implements OnInit {
 
   constructor(
     private trackerService: TrackerService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private userService: UserService
   ) {
     this.tasksDoing = [];
     this.tasksDone = [];
@@ -47,6 +49,7 @@ export class TrackerComponent implements OnInit {
 
   submit() {
     const body = this.newTask.getRawValue();
+    body['user'] = this.userService.user.id;
     this.trackerService.newTask(body).subscribe(
       value => {},
       error => {},

@@ -49,7 +49,7 @@ export class TaskComponent implements OnInit {
       uuid: this.task.uuid,
       end_time: formatDate(new Date(), 'yyyy-MM-ddTHH:mm:ssZZZZZ', 'en-US', this.task.timeZone)
     }
-    this.trackerService.endTask(body).subscribe(
+    this.trackerService.endTask(this.task.uuid, body).subscribe(
       value => {},
       error => {},
       () => {

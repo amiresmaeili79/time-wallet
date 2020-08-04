@@ -1,0 +1,19 @@
+<section class="login">
+  <form [formGroup]="loginForm" (ngSubmit)="login()">
+    <h1>Login</h1>
+    <mat-form-field>
+      <mat-label>
+        username
+      </mat-label>
+      <input formControlName="username" matInput type="text">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>
+        password
+      </mat-label>
+      <input formControlName="password" matInput type="password">
+    </mat-form-field>
+    <button type="submit" mat-raised-button color="accent">login</button>
+  </form>
+  <a routerLink="../signup"></a>
+</section>
