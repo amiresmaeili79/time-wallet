@@ -7,8 +7,14 @@
     display: flex;
     justify-content: space-between;
   }
+  mat-card-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
   .field {
     display: flex;
+    align-items: center;
     * {
       margin: 5px;
     }

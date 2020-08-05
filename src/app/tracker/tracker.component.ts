@@ -42,20 +42,22 @@ export class TrackerComponent implements OnInit {
     this.trackerService.getProjects().subscribe(
       (value: any) => this.projects = value.projects.map(prj => new Project(prj.id, prj.name)),
       error => {},
-      () => this.trackerService.projects = this.projects
+      () => {
+        this.trackerService.projects = this.projects;
+        this.getTasks();
+      }
     );
-    this.getTasks();
   }
 
   submit() {
     const body = this.newTask.getRawValue();
-    body['user'] = this.userService.user.id;
     this.trackerService.newTask(body).subscribe(
       value => {},
       error => {},
       () => {
         this.snackBar.open('New task added', 'Dismiss', {duration: 1000});
         this.getTasks();
+        this.resetForm();
       }
     );
   }

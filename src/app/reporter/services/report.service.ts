@@ -7,7 +7,7 @@ export class ReportService {
   constructor(private http: HttpClient) {
   }
 
-  getReports(period: string) {
-    return this.http.get(environment.api + 'report/'+period+'/');
+  getReports(start: string, end: string) {
+    return this.http.get(environment.api + `reports/${start},${end}/`);
   }
 }

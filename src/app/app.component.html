@@ -2,10 +2,10 @@
   <mat-sidenav mode="over" #sidenav>
     <mat-toolbar class="banner-toolbar">
       <mat-toolbar-row>
-        <div class="banner">
-          <span><b>Task manager app</b></span>
+        <div *ngIf="user" class="banner">
+          <span><b>{{user.firstName}} {{user.lastName}}</b></span>
           <br>
-          <span>Developed by Amir Esmaeil</span>
+          <span class="username">{{user.username}}</span>
         </div>
       </mat-toolbar-row>
     </mat-toolbar>

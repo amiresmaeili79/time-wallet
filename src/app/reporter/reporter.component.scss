@@ -1,0 +1,35 @@
+.config {
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  form {
+    flex: 1;
+    margin-right: 10px;
+    display: flex;
+    flex-direction: column;
+    mat-form-field {
+      width: max-content;
+    }
+    mat-radio-group {
+      margin: 1rem 0;
+      mat-radio-button {
+        margin: 10px;
+      }
+    }
+    button {
+      width: max-content;
+    }
+  }
+  .chart {
+    flex: 3;
+  }
+}
+@media only screen and (max-width: 576px) {
+  .config {
+    flex-direction: column;
+    .chart {
+      width: 100%;
+    }
+  }
+}

@@ -34,9 +34,10 @@ export class UserService {
   }
   isLoggedIn() {
     try {
-      return jwt_decode(this.getToken()['access']);
+      return jwt_decode(this.getToken());
     } catch (e) {
-      return false
+      localStorage.clear();
+      return false;
     }
   }
   getProfile() {
