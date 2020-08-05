@@ -13,10 +13,16 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 import {SharedModule} from "./shared/shared.module";
 import {TokenInterceptor} from "./services/token.interceptor";
+import { StartPageComponent } from './start-page/start-page.component';
+import {UserModule} from "./user/user.module";
+import {UserService} from "./services/user.service";
+import { ProjectsComponent } from './tracker/projects/projects.component';
+import {MatExpansionModule} from "@angular/material/expansion";
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    StartPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,14 +35,16 @@ import {TokenInterceptor} from "./services/token.interceptor";
     MatListModule,
     MatButtonModule,
     MatIconModule,
-    SharedModule
+    SharedModule,
+    UserModule,
   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
       multi: true
-    }
+    },
+    UserService
   ],
   bootstrap: [AppComponent]
 })

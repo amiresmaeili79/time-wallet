@@ -8,7 +8,7 @@ import * as jwt_decode from "jwt-decode";
 @Injectable()
 export class UserService {
 
-  user: UserModel;
+  user = new ReplaySubject<UserModel>(1);
 
   constructor(
     private http: HttpClient
@@ -18,10 +18,10 @@ export class UserService {
     return this.http.post(environment.auth, body);
   }
   getUser() {
-    return this.user;
+    return this.user.asObservable();
   }
   updateUser(user: UserModel): void {
-    this.user = user;
+    this.user.next(user);
   }
   signUp(user: object) {
     return this.http.post(environment.user, user);
@@ -42,5 +42,9 @@ export class UserService {
   }
   getProfile() {
     return this.http.get(environment.user + 'me/');
+  }
+  logOut() {
+    localStorage.clear();
+    this.updateUser(null);
   }
 }

@@ -19,6 +19,12 @@ export class TrackerService {
   getProjects() {
     return this.http.get(environment.api + 'projects/');
   }
+  addProject(body: object) {
+    return this.http.post(environment.api + 'projects/', body);
+  }
+  deleteProject(id: number) {
+    return this.http.delete(environment.api + `projects/${id}/`);
+  }
   newTask(body: object) {
     return this.http.post(environment.api + 'tasks/', body);
   }

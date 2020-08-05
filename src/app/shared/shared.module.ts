@@ -24,9 +24,6 @@ import {TokenInterceptor} from "../services/token.interceptor";
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule
-  ],
-  providers: [
-    UserService,
   ]
 })
 export class SharedModule { }

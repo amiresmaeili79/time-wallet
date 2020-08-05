@@ -5,13 +5,28 @@ mat-sidenav-container {
   right: 0;
   left: 0;
 
+  mat-sidenav {
+    width: 300px;
+  }
   .banner-toolbar {
     height: 30vh;
     padding: 10px;
     text-align: center;
-    .username {
-      font-size: smaller;
+    justify-content: center;
+    mat-toolbar-row {
+      display: flex;
+      flex-direction: column;
+      height: auto;
+      img {
+        margin: 10px 0;
+        width: 5rem;
+      }
+      .username {
+        font-size: xx-small;
+        white-space: pre-wrap;
+      }
     }
+
   }
   mat-list-item {
     mat-icon {
@@ -24,6 +39,13 @@ mat-sidenav-container {
     z-index: 10;
     .toggle-button {
       margin-right: 10px;
+    }
+  }
+}
+@media only screen and (max-width: 576px) {
+  mat-sidenav-container {
+    mat-sidenav {
+      width: 70%;
     }
   }
 }

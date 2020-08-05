@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {formatDate} from "@angular/common";
-import {Project} from "./models/project.model";
-import {TrackerService} from "./service/tracker.service";
-import {Task} from "./models/task.model";
+import {Project} from "../models/project.model";
+import {TrackerService} from "../service/tracker.service";
+import {Task} from "../models/task.model";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {UserService} from "../services/user.service";
+import {UserService} from "../../services/user.service";
 
 @Component({
   selector: 'app-tracker',

@@ -4,20 +4,24 @@ import { LoginComponent } from './login/login.component';
 import {SharedModule} from "../shared/shared.module";
 import {ReactiveFormsModule} from "@angular/forms";
 import {Route, RouterModule} from "@angular/router";
-
-
-const routes: Route[] = [
-  {path: '', component: LoginComponent}
-]
-
+import { SignupComponent } from './signup/signup.component';
+import {UserRoutingModule} from "./user-routing.module";
+import { LogoutComponent } from './logout/logout.component';
 
 @NgModule({
-  declarations: [LoginComponent],
+  declarations: [
+    LoginComponent,
+    SignupComponent,
+    LogoutComponent
+  ],
   imports: [
     CommonModule,
     SharedModule,
     ReactiveFormsModule,
-    RouterModule.forChild(routes)
+    UserRoutingModule
+  ],
+  exports: [
+    LoginComponent
   ]
 })
 export class UserModule { }

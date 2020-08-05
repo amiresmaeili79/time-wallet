@@ -8,7 +8,8 @@ import {environment} from "../../environments/environment";
 export class TokenInterceptor implements HttpInterceptor {
 
   exclude = [
-    environment.auth
+    environment.auth,
+    environment.user
   ];
 
   constructor(private userService: UserService) {
