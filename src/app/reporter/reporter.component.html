@@ -1,34 +1,58 @@
 <div class="config">
-  <form [formGroup]="dateRange" (ngSubmit)="getReports()">
-    <mat-form-field appearance="fill">
-      <mat-label>Start date</mat-label>
-      <input matInput formControlName="start_date" [matDatepicker]="picker">
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
+  <mat-card>
+    <form (ngSubmit)="getReports()" [formGroup]="dateRange">
+      <mat-form-field appearance="fill">
+        <mat-label>Start date</mat-label>
+        <input [matDatepicker]="picker" formControlName="start_date" matInput>
+        <mat-datepicker-toggle [for]="picker" matSuffix></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
 
-    <mat-form-field appearance="fill">
-      <mat-label>End date</mat-label>
-      <input matInput formControlName="end_date" [matDatepicker]="picker2">
-      <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-      <mat-datepicker #picker2></mat-datepicker>
-    </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>End date</mat-label>
+        <input [matDatepicker]="picker2" formControlName="end_date" matInput>
+        <mat-datepicker-toggle [for]="picker2" matSuffix></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+      </mat-form-field>
 
-    <mat-radio-group (change)="typeChanged($event)">
-      <mat-radio-button checked value="column">
-        Bar
-      </mat-radio-button>
-      <mat-radio-button value="line">
-        Line
-      </mat-radio-button>
-    </mat-radio-group>
+      <mat-radio-group (change)="typeChanged($event)">
+        <mat-radio-button checked value="column">
+          Bar
+        </mat-radio-button>
+        <mat-radio-button value="line">
+          Line
+        </mat-radio-button>
+      </mat-radio-group>
 
-    <button color="accent" mat-raised-button type="submit">
-      submit
-    </button>
-  </form>
+      <button color="accent" mat-raised-button type="submit">
+        submit
+      </button>
+    </form>
+  </mat-card>
   <div class="chart">
-    <div id="chartContainer" style="height: 370px; width: 100%;margin-top: 1rem"></div>
+    <div *ngIf="!chartRendered" style="height: 100%;display: flex; justify-content: center; align-items: center">
+      <h2>Please select dates in order to load the charts</h2>
+    </div>
+    <div *ngIf="chartRendered">
+      <mat-card>
+        <div id="chartContainer" style="height: 370px; width: 100%"></div>
+      </mat-card>
+      <br>
+      <div class="row">
+        <mat-card class="gen-report">
+          <mat-card-title>
+            General report
+          </mat-card-title>
+          <mat-card-content>
+            <h3>Total hours of work: {{totalHour}}</h3>
+          </mat-card-content>
+        </mat-card>
+
+        <mat-card class="pie-card">
+          <div id="pie-chart" style="height: 350px; width: 100%"></div>
+        </mat-card>
+      </div>
+    </div>
   </div>
 </div>
 

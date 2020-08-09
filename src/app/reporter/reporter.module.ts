@@ -4,7 +4,7 @@ import {CommonModule} from '@angular/common';
 import {ReporterRoutingModule} from './reporter-routing.module';
 import {ReporterComponent} from './reporter.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
-import {ReportService} from "./services/report.service";
+import {ReportService} from "../services/report.service";
 import {TokenInterceptor} from "../services/token.interceptor";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatButtonModule} from "@angular/material/button";
@@ -15,6 +15,8 @@ import {MatTooltipModule} from "@angular/material/tooltip";
 import {MatNativeDateModule} from "@angular/material/core";
 import {SharedModule} from "../shared/shared.module";
 import {MatRadioModule} from "@angular/material/radio";
+import {MatCardModule} from "@angular/material/card";
+import {MatDividerModule} from "@angular/material/divider";
 
 
 @NgModule({
@@ -30,8 +32,10 @@ import {MatRadioModule} from "@angular/material/radio";
     MatInputModule,
     MatTooltipModule,
     MatNativeDateModule,
+    MatCardModule,
     SharedModule,
-    MatRadioModule
+    MatRadioModule,
+    MatDividerModule
   ],
   providers: [
     ReportService,

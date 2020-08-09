@@ -13,7 +13,7 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
 import {NgxMaterialTimepickerModule} from "ngx-material-timepicker";
 import {MatButtonModule} from "@angular/material/button";
-import {TrackerService} from "./service/tracker.service";
+import {TrackerService} from "../services/tracker.service";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import { TaskComponent } from './Tasks/task/task.component';
 import {MatCardModule} from "@angular/material/card";

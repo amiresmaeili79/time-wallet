@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {environment} from "../../../environments/environment";
+import {environment} from "../../environments/environment";
 import {Project} from "../models/project.model";
 
 @Injectable({
@@ -39,8 +39,5 @@ export class TrackerService {
   }
   deleteTask(uuid: string) {
     return this.http.delete(environment.api + `tasks/${uuid}/`);
-  }
-  getProjectName(id: number) {
-    return this.projects.filter(t => t.id === id)[0].name;
   }
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {TrackerService} from "../service/tracker.service";
-import {Project} from "../models/project.model";
+import {TrackerService} from "../../services/tracker.service";
+import {Project} from "../../models/project.model";
 import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({

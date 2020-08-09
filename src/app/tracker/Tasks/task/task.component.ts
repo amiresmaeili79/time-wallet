@@ -1,8 +1,8 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Task} from "../../models/task.model";
+import {Task} from "../../../models/task.model";
 import {TimeInterval} from "rxjs";
 import {formatDate} from "@angular/common";
-import {TrackerService} from "../../service/tracker.service";
+import {TrackerService} from "../../../services/tracker.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
@@ -37,7 +37,6 @@ export class TaskComponent implements OnInit {
         this.setTimer();
       }, 1000);
     }
-    this.getProjectName();
   }
   setTimer() {
     this.timer += 1000

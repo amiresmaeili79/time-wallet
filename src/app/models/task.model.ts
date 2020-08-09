@@ -4,7 +4,7 @@ import {Project} from "./project.model";
 export class Task {
   public uuid: string;
   public title: string;
-  public project: Project;
+  public project: Project|null;
   public tag: string;
   public _startTime: Date;
   public _endTime: Date;
@@ -25,7 +25,9 @@ export class Task {
   constructor(task) {
     this.uuid = task.uuid;
     this.title = task.title;
-    this.project = new Project(task.project.id, task.project.name);
+    if (task.project) {
+      this.project = new Project(task.project.id, task.project.name);
+    }
     this.tag = task.tag;
     this.startTime = task.start_time;
     this.endTime = task.end_time;
