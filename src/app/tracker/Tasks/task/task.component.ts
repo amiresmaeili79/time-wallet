@@ -87,8 +87,4 @@ export class TaskComponent implements OnInit {
       }
     );
   }
-
-  getProjectName() {
-    this.projectName = this.trackerService.getProjectName(this.task.project);
-  }
 }
