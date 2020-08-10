@@ -6,14 +6,17 @@ import {StartPageComponent} from "./start-page/start-page.component";
 const routes: Routes = [
   {
     path: '',
-    component: StartPageComponent
+    component: StartPageComponent,
+    data: {
+      title: 'Work Wallet'
+    }
   },
   {
   path: 'tracker',
   loadChildren: () => import('./tracker/tracker.module').then(m => m.TrackerModule)
   },
   {
-    path: 'report',
+    path: 'dashboard',
     loadChildren: () => import('./reporter/reporter.module').then(m => m.ReporterModule)
   },
   {

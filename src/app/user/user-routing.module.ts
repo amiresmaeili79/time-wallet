@@ -6,8 +6,22 @@ import {LogoutComponent} from "./logout/logout.component";
 
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent },
-  { path: 'signup', component: SignupComponent },
+  {
+    path: 'login',
+    component: LoginComponent,
+    data: {
+      title: 'Login | Work Wallet',
+      description: 'Login to your account'
+    }
+  },
+  {
+    path: 'signup',
+    component: SignupComponent,
+    data: {
+      title: 'Sign up | Work Wallet',
+      description: 'Create a new account'
+    }
+  },
   { path: 'logout', component: LogoutComponent}
 ];
 

@@ -17,6 +17,7 @@ import { StartPageComponent } from './start-page/start-page.component';
 import {UserModule} from "./user/user.module";
 import {UserService} from "./services/user.service";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
+import {TitleService} from "./services/title.service";
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
       multi: true
     },
     UserService,
+    TitleService
   ],
   bootstrap: [AppComponent]
 })

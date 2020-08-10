@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {UserService} from "./services/user.service";
 import {UserModel} from "./models/user.model";
 import {Router} from "@angular/router";
+import {TitleService} from "./services/title.service";
 
 @Component({
   selector: 'app-root',
@@ -21,7 +22,8 @@ export class AppComponent {
   constructor(
     private http: HttpClient,
     public userService: UserService,
-    private router: Router
+    private router: Router,
+    private titleService: TitleService
   ) {
     if (this.userService.isLoggedIn()) {
       this.userService.getProfile().subscribe(
@@ -43,7 +45,7 @@ export class AppComponent {
         }
       }
     );
-
+  this.titleService.setPageDetail();
   }
   handleSideBar(loggedIn: boolean) {
     if (loggedIn) {
@@ -54,8 +56,8 @@ export class AppComponent {
           icon: 'timer'
         },
         {
-          name: 'Work Report',
-          url: 'report',
+          name: 'Dashboard',
+          url: 'dashboard',
           icon: 'bar_chart'
         },
         {
