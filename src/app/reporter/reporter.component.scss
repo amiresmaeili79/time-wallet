@@ -41,6 +41,13 @@
     flex-direction: column;
     .chart {
       width: 100%;
+      margin: 1rem 0 0 0;
+      .row {
+        flex-direction: column-reverse;
+        .gen-report {
+          margin: 1rem 0 0 0;
+        }
+      }
     }
   }
 }

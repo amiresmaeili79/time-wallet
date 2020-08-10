@@ -59,6 +59,11 @@ export class AppComponent {
           icon: 'bar_chart'
         },
         {
+          name: 'My projects',
+          url: 'tracker/projects',
+          icon: 'pending_actions'
+        },
+        {
           name: 'Logout',
           url: '/auth/logout',
           icon: 'logout'

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {AbstractControl, FormControl, FormGroup, Validators} from "@angular/forms";
 import {UserService} from "../../services/user.service";
 import {Router} from "@angular/router";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-signup',
@@ -14,7 +15,8 @@ export class SignupComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private matSnackBar: MatSnackBar,
     ) {
     this.signUp = new FormGroup({
       email: new FormControl(null, [
@@ -66,8 +68,12 @@ export class SignupComponent implements OnInit {
     };
     this.userService.signUp(body).subscribe(
       value => {},
-      error => {},
+      error => {
+        this.matSnackBar.open(error.error.detail, 'OK', {duration:1000});
+      },
       () => {
+        this.matSnackBar.open('Signed up successfully', 'OK',
+                        {duration:1000});
         this.router.navigateByUrl('/auth/login').then();
       }
     );

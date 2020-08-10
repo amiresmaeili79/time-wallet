@@ -6,14 +6,26 @@
         username
       </mat-label>
       <input formControlName="username" matInput type="text">
+      <mat-error *ngIf="loginForm.get('username').hasError('required')">
+        <span>Username is required</span>
+      </mat-error>
+      <mat-error *ngIf="loginForm.get('username').hasError('minLength')">
+        <span>Username must be at least 4 characters or more</span>
+      </mat-error>
     </mat-form-field>
     <mat-form-field>
       <mat-label>
         password
       </mat-label>
       <input formControlName="password" matInput type="password">
+      <mat-error *ngIf="loginForm.get('password').hasError('required')">
+        <span>Password is required</span>
+      </mat-error>
+      <mat-error *ngIf="loginForm.get('password').hasError('minLength')">
+        <span>Password must be at least 6 characters or more</span>
+      </mat-error>
     </mat-form-field>
-    <button type="submit" mat-raised-button color="accent">login</button>
+    <button [disabled]="loginForm.invalid" type="submit" mat-raised-button color="accent">login</button>
   </form>
   <a routerLink="../signup"></a>
 </section>

@@ -3,6 +3,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {UserService} from "../../services/user.service";
 import {UserModel} from "../../models/user.model";
 import {Router} from "@angular/router";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,8 @@ export class LoginComponent implements OnInit {
   loginForm : FormGroup;
   constructor(
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private matSnackBar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
@@ -37,7 +39,9 @@ export class LoginComponent implements OnInit {
           this.userService.recordToken(value.access);
         }
       },
-      error => {},
+      error => {
+        this.matSnackBar.open(error.error.detail, 'OK', {duration:1000});
+      },
       () => {
         this.userService.getProfile().subscribe(
           (value: any) => this.userService.updateUser(new UserModel(value.user)),

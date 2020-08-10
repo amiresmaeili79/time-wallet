@@ -62,6 +62,6 @@
         Please re enter password
       </mat-error>
     </mat-form-field>
-    <button color="accent" mat-raised-button type="submit">sign up</button>
+    <button [disabled]="signUp.invalid" color="accent" mat-raised-button type="submit">sign up</button>
   </form>
 </section>

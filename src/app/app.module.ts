@@ -16,8 +16,7 @@ import {TokenInterceptor} from "./services/token.interceptor";
 import { StartPageComponent } from './start-page/start-page.component';
 import {UserModule} from "./user/user.module";
 import {UserService} from "./services/user.service";
-import { ProjectsComponent } from './tracker/projects/projects.component';
-import {MatExpansionModule} from "@angular/material/expansion";
+import {MatSnackBarModule} from "@angular/material/snack-bar";
 
 @NgModule({
   declarations: [
@@ -37,6 +36,7 @@ import {MatExpansionModule} from "@angular/material/expansion";
     MatIconModule,
     SharedModule,
     UserModule,
+    MatSnackBarModule
   ],
   providers: [
     {
@@ -44,7 +44,7 @@ import {MatExpansionModule} from "@angular/material/expansion";
       useClass: TokenInterceptor,
       multi: true
     },
-    UserService
+    UserService,
   ],
   bootstrap: [AppComponent]
 })
