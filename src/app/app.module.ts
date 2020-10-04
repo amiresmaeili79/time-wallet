@@ -18,6 +18,7 @@ import {UserModule} from "./user/user.module";
 import {UserService} from "./services/user.service";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {TitleService} from "./services/title.service";
+import {HttpErrorInterceptor} from "./services/HttpErrorInterceptor"
 
 @NgModule({
   declarations: [
@@ -45,6 +46,11 @@ import {TitleService} from "./services/title.service";
       useClass: TokenInterceptor,
       multi: true
     },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpErrorInterceptor,
+      multi: true
+  },
     UserService,
     TitleService
   ],
