@@ -2,13 +2,13 @@
   <mat-sidenav mode="over" #sidenav>
     <mat-toolbar class="banner-toolbar">
       <mat-toolbar-row *ngIf="user">
-        <img src="../assets/images/user.png" alt="user">
+        <img src="assets/images/user.png" alt="user">
         <span><b>{{user.firstName}} {{user.lastName}}</b></span>
         <br>
         <span class="username">{{user.username}}</span>
       </mat-toolbar-row>
       <mat-toolbar-row *ngIf="!user">
-        <h1>Work Wallet</h1>
+        <h1>Time Wallet</h1>
         <span class="username">Copyright Amir Esmaeili</span>
       </mat-toolbar-row>
     </mat-toolbar>
@@ -32,7 +32,7 @@
         mat-icon-button>
         <mat-icon>menu</mat-icon>
       </button>
-      <span>Work Wallet</span>
+      <span>Time Wallet</span>
     </mat-toolbar>
   </header>
 
