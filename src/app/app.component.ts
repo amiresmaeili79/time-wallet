@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {UserService} from "./services/user.service";
-import {UserModel} from "./models/user.model";
-import {Router} from "@angular/router";
-import {TitleService} from "./services/title.service";
+import {Component} from '@angular/core';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {UserService} from './services/user.service';
+import {UserModel} from './models/user.model';
+import {Router} from '@angular/router';
+import {TitleService} from './services/title.service';
 
 @Component({
   selector: 'app-root',
@@ -19,6 +19,7 @@ export class AppComponent {
   title = 'time-tracker-front';
   user: UserModel;
   sideBar: object[];
+
   constructor(
     private http: HttpClient,
     public userService: UserService,
@@ -28,8 +29,10 @@ export class AppComponent {
     if (this.userService.isLoggedIn()) {
       this.userService.getProfile().subscribe(
         (value: any) => this.userService.updateUser(new UserModel(value.user)),
-        error => this.router.navigateByUrl('/auth/login')
-      );
+        error => {
+          this.router.navigateByUrl('/auth/login');
+          this.handleSideBar(false);
+        });
     } else {
       this.handleSideBar(false);
       this.router.navigateByUrl('/auth/login').then();
@@ -43,10 +46,10 @@ export class AppComponent {
           this.router.navigateByUrl('/auth/login').then();
           this.handleSideBar(false);
         }
-      }
-    );
-  this.titleService.setPageDetail();
+      });
+    this.titleService.setPageDetail();
   }
+
   handleSideBar(loggedIn: boolean) {
     if (loggedIn) {
       this.sideBar = [
