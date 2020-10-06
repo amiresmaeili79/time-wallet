@@ -8,7 +8,7 @@ const routes: Routes = [
     path: '',
     component: StartPageComponent,
     data: {
-      title: 'Work Wallet'
+      title: 'Time Wallet'
     }
   },
   {
