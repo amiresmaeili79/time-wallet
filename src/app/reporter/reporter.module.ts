@@ -5,7 +5,7 @@ import {ReporterRoutingModule} from './reporter-routing.module';
 import {ReporterComponent} from './reporter.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {ReportService} from "../shared/services/report.service";
-import {TokenInterceptor} from "../shared/services/token.interceptor";
+import {HttpInterceptorService} from "../shared/services/http-interceptor.service";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
@@ -41,7 +41,7 @@ import {MatDividerModule} from "@angular/material/divider";
     ReportService,
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: TokenInterceptor,
+      useClass: HttpInterceptorService,
       multi: true
     }
   ]

@@ -1,9 +1,9 @@
 .loading-page {
-  position: absolute;
+  position: fixed;
   top: 64px;
   right: 0;
   left: 0;
-  bottom: 0;
+  height: 100vh;
   background-color: #424242;
   display: flex;
   flex-direction: column;
@@ -12,6 +12,11 @@
   z-index: 10;
   span {
     margin-top: 2rem;
+  }
+}
+@media only screen and (max-width: 576px) {
+  .loading-page {
+    top: 56px;
   }
 }
 $spCol: #8bc34a;

@@ -1,13 +1,14 @@
 import {Injectable} from '@angular/core';
-import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import {HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
+import {Observable, throwError} from 'rxjs';
 import {UserService} from './user.service';
 import {environment} from '../../../environments/environment';
 import {LoadingPageService} from './loading-page.service';
-import {finalize} from 'rxjs/operators';
+import {catchError, finalize, map} from 'rxjs/operators';
+import {Router} from '@angular/router';
 
 @Injectable()
-export class TokenInterceptor implements HttpInterceptor {
+export class HttpInterceptorService implements HttpInterceptor {
 
   exclude = [
     environment.auth,
@@ -17,7 +18,8 @@ export class TokenInterceptor implements HttpInterceptor {
   activeRequests: number;
   constructor(
     private authenticationService: UserService,
-    private loadingPageService: LoadingPageService
+    private loadingPageService: LoadingPageService,
+    private router: Router
   ) {
     this.activeRequests = 0;
   }
@@ -36,6 +38,16 @@ export class TokenInterceptor implements HttpInterceptor {
       });
     }
     return next.handle(req).pipe(
+      map((event: HttpEvent<any>) => {
+        return event;
+      }),
+      catchError((error: HttpErrorResponse) => {
+        if (error.status === 401) {
+          this.authenticationService.logOut();
+          this.router.navigateByUrl('/login').then();
+        }
+        return throwError(error);
+      }),
       finalize(() => {
         this.activeRequests--;
         if (this.activeRequests === 0) {

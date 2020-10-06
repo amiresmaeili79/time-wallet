@@ -19,7 +19,7 @@ import { TaskComponent } from './Tasks/task/task.component';
 import {MatCardModule} from "@angular/material/card";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {MatTooltipModule} from "@angular/material/tooltip";
-import {TokenInterceptor} from "../shared/services/token.interceptor";
+import {HttpInterceptorService} from "../shared/services/http-interceptor.service";
 import {ProjectsComponent} from "./projects/projects.component";
 
 
@@ -51,7 +51,7 @@ import {ProjectsComponent} from "./projects/projects.component";
     TrackerService,
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: TokenInterceptor,
+      useClass: HttpInterceptorService,
       multi: true
     }
   ]
