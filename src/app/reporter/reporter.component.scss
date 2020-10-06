@@ -3,6 +3,9 @@
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+  .form-card {
+    height: max-content;
+  }
   form {
     flex: 1;
     margin-right: 10px;

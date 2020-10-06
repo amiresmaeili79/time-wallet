@@ -30,7 +30,8 @@ export class AppComponent {
     private loadingPageService: LoadingPageService
   ) {
 
-    if (this.userService.isLoggedIn()) {
+    if (this.userService.getToken()) {
+      console.log('logged in')
       this.userService.getProfile().subscribe(
         (value: any) => this.userService.updateUser(new UserModel(value.user)),
         error => {

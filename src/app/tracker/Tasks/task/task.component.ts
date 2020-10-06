@@ -1,9 +1,8 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Task} from "../../../shared/models/task.model";
-import {TimeInterval} from "rxjs";
-import {formatDate} from "@angular/common";
-import {TrackerService} from "../../../shared/services/tracker.service";
-import {MatSnackBar} from "@angular/material/snack-bar";
+import {Task} from '../../../shared/models/task.model';
+import {formatDate} from '@angular/common';
+import {TrackerService} from '../../../shared/services/tracker.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-task',
@@ -32,14 +31,16 @@ export class TaskComponent implements OnInit {
   ngOnInit(): void {
 
     if (this.task.endTime === 'present') {
-      this.timer = this.task.initTimer //ms;
+      this.timer = this.task.initTimer; // ms;
+      this.setTimer(0);
       this.timerInterval = setInterval(() => {
         this.setTimer();
       }, 1000);
     }
   }
-  setTimer() {
-    this.timer += 1000
+
+  setTimer(ms= 1000) {
+    this.timer += ms;
     this.timerStr = (new Date(this.timer)).toISOString().substr(11, 8);
   }
 
@@ -47,14 +48,16 @@ export class TaskComponent implements OnInit {
     const body = {
       uuid: this.task.uuid,
       end_time: formatDate(new Date(), 'yyyy-MM-ddTHH:mm:ssZZZZZ', 'en-US', this.task.timeZone)
-    }
+    };
     this.trackerService.endTask(this.task.uuid, body).subscribe(
-      value => {},
-      error => {},
+      value => {
+      },
+      error => {
+      },
       () => {
         this.updated.emit();
         this.matSnackBar.open('The task finished successfully',
-          'Dismiss', {duration: 1000} );
+          'Dismiss', {duration: 1000});
       }
     );
   }
@@ -64,24 +67,28 @@ export class TaskComponent implements OnInit {
       title: this.task.title,
       tag: this.task.tag,
       project: this.task.project,
-    }
+    };
     this.trackerService.newTask(body).subscribe(
-      value => {},
-      error => {},
+      value => {
+      },
+      error => {
+      },
       () => {
         this.updated.emit();
         this.matSnackBar.open('The task renewed successfully',
-          'Dismiss', {duration: 1000} );
+          'Dismiss', {duration: 1000});
       }
     );
   }
 
   delete() {
     this.trackerService.deleteTask(this.task.uuid).subscribe(
-      value => {},
-      error => {},
+      value => {
+      },
+      error => {
+      },
       () => {
-        this.matSnackBar.open('Task deleted', 'Dismiss', {duration:1000})
+        this.matSnackBar.open('Task deleted', 'Dismiss', {duration: 1000});
         this.updated.emit();
       }
     );

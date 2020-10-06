@@ -36,17 +36,16 @@ export class TrackerComponent implements OnInit {
       project: new FormControl(''),
       tag: new FormControl(null)
     });
-  }
-
-  ngOnInit(): void {
     this.trackerService.getProjects().subscribe(
       (value: any) => this.projects = value.projects.map(prj => new Project(prj.id, prj.name)),
       error => {},
       () => {
         this.trackerService.projects = this.projects;
         this.getTasks();
-      }
-    );
+      });
+  }
+
+  ngOnInit(): void {
   }
 
   submit() {

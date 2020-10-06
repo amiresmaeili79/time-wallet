@@ -19,10 +19,10 @@ export class ProjectsComponent implements OnInit {
     this.newProject = new FormGroup({
       name: new FormControl(null, Validators.required)
     });
+    this.getProjects();
   }
 
   ngOnInit(): void {
-    this.getProjects();
   }
 
   submit() {

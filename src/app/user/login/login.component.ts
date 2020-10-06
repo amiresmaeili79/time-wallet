@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {UserService} from "../../shared/services/user.service";
-import {UserModel} from "../../shared/models/user.model";
-import {Router} from "@angular/router";
-import {MatSnackBar} from "@angular/material/snack-bar";
+import {Component, OnInit} from '@angular/core';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {UserService} from '../../shared/services/user.service';
+import {UserModel} from '../../shared/models/user.model';
+import {Router} from '@angular/router';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
@@ -11,12 +11,15 @@ import {MatSnackBar} from "@angular/material/snack-bar";
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  loginForm : FormGroup;
+  loginForm: FormGroup;
+  hide = true;
+
   constructor(
     private userService: UserService,
     private router: Router,
     private matSnackBar: MatSnackBar
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
@@ -40,12 +43,13 @@ export class LoginComponent implements OnInit {
         }
       },
       error => {
-        this.matSnackBar.open(error.error.detail, 'OK', {duration:1000});
+        this.matSnackBar.open('User name or password is incorrect', 'OK', {duration: 1000});
       },
       () => {
         this.userService.getProfile().subscribe(
           (value: any) => this.userService.updateUser(new UserModel(value.user)),
-          error => {},
+          error => {
+          },
           () => this.router.navigateByUrl('/')
         );
       }

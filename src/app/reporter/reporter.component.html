@@ -1,19 +1,16 @@
 <div class="config">
-  <mat-card>
+  <mat-card class="form-card">
     <form (ngSubmit)="getReports()" [formGroup]="dateRange">
       <mat-form-field appearance="fill">
-        <mat-label>Start date</mat-label>
-        <input [matDatepicker]="picker" formControlName="start_date" matInput>
-        <mat-datepicker-toggle [for]="picker" matSuffix></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
+        <mat-label>Enter a date range</mat-label>
+        <mat-date-range-input [rangePicker]="picker3">
+          <input formControlName="start_date" matStartDate placeholder="Start date">
+          <input matEndDate formControlName="end_date" placeholder="End date">
+        </mat-date-range-input>
+        <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+        <mat-date-range-picker #picker3></mat-date-range-picker>
       </mat-form-field>
 
-      <mat-form-field appearance="fill">
-        <mat-label>End date</mat-label>
-        <input [matDatepicker]="picker2" formControlName="end_date" matInput>
-        <mat-datepicker-toggle [for]="picker2" matSuffix></mat-datepicker-toggle>
-        <mat-datepicker #picker2></mat-datepicker>
-      </mat-form-field>
 
       <mat-radio-group (change)="typeChanged($event)">
         <mat-radio-button checked value="column">

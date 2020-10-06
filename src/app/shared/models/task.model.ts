@@ -1,24 +1,23 @@
-import {formatDate} from "@angular/common";
-import {Project} from "./project.model";
+import {Project} from './project.model';
 
 export class Task {
   public uuid: string;
   public title: string;
   public project: Project|null;
   public tag: string;
-  public _startTime: Date;
-  public _endTime: Date;
+  public start: Date;
+  public end: Date;
 
   timeZone: string;
 
-  readonly OPTIONS = {
+  private OPTIONS = {
     month: 'long', day: 'numeric', hour: 'numeric',
-    minute: 'numeric', timeZone: this.timeZone, hour12: false,
+    minute: 'numeric', timeZone: null, hour12: false,
     hourCycle: 'h23'
   };
-  readonly TIME_OPTIONS = {
+  private TIME_OPTIONS = {
     hour: 'numeric', minute: 'numeric',
-    timeZone: this.timeZone, hour12: false,
+    timeZone: null, hour12: false,
     hourCycle: 'h23'
   };
 
@@ -33,46 +32,45 @@ export class Task {
     this.endTime = task.end_time;
 
     this.timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    this.OPTIONS.timeZone = this.timeZone;
+    this.TIME_OPTIONS.timeZone = this.timeZone;
   }
+  get startTime() {
 
+    return this.start.toLocaleTimeString('en-US', this.OPTIONS );
+  }
   set startTime(value: string|null) {
     if (value === null) {
-      this._startTime = new Date();
+      this.start = new Date();
     } else {
-      this._startTime = new Date(value);
+      this.start = new Date(value);
     }
   }
 
   set endTime(value: string|null) {
     if (value === null) {
-      this._endTime = null;
+      this.end = null;
     } else {
-      this._endTime = new Date(value);
+      this.end = new Date(value);
     }
   }
-
-  get startTime() {
-
-    return this._startTime.toLocaleTimeString('en-US', this.OPTIONS );
-  }
-
   get endTime() {
-    if (this._endTime === null) {
-      return 'present'
+    if (this.end === null) {
+      return 'present';
     }
-    if (this._endTime.toLocaleDateString() !== this._startTime.toLocaleDateString()) {
-      return this._endTime.toLocaleString('en-US', this.OPTIONS);
+    if (this.end.toLocaleDateString() !== this.start.toLocaleDateString()) {
+      return this.end.toLocaleString('en-US', this.OPTIONS);
     } else {
-      return this._endTime.toLocaleTimeString('en-US', this.TIME_OPTIONS);
+      return this.end.toLocaleTimeString('en-US', this.TIME_OPTIONS);
     }
   }
 
   get time() {
-    let timeDelta = this._endTime.getTime() - this._startTime.getTime();
+    const timeDelta = this.end.getTime() - this.start.getTime();
     return (new Date(timeDelta)).toISOString().substr(11, 8);
   }
 
   get initTimer() {
-    return ((new Date()).getTime() - this._startTime.getTime());
+    return ((new Date()).getTime() - this.start.getTime());
   }
 }

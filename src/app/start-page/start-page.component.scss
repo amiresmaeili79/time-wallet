@@ -1,3 +1,11 @@
 .start-page {
   padding: 1rem;
+  a {
+    color: white;
+    display: flex;
+    align-items: center;
+    span {
+      margin-left: .5rem;
+    }
+  }
 }

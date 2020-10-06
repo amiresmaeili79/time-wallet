@@ -7,6 +7,7 @@ import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
 import {HTTP_INTERCEPTORS} from "@angular/common/http";
 import {TokenInterceptor} from "./services/token.interceptor";
+import {MatIconModule} from '@angular/material/icon';
 
 
 
@@ -18,12 +19,13 @@ import {TokenInterceptor} from "./services/token.interceptor";
     ReactiveFormsModule,
     MatFormFieldModule
   ],
-  exports:[
+  exports: [
     FormsModule,
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    MatIconModule
   ]
 })
 export class SharedModule { }
