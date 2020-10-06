@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {StartPageComponent} from "./start-page/start-page.component";
+import {StartPageComponent} from './start-page/start-page.component';
 
 
 const routes: Routes = [
@@ -12,8 +12,8 @@ const routes: Routes = [
     }
   },
   {
-  path: 'tracker',
-  loadChildren: () => import('./tracker/tracker.module').then(m => m.TrackerModule)
+    path: 'tracker',
+    loadChildren: () => import('./tracker/tracker.module').then(m => m.TrackerModule)
   },
   {
     path: 'dashboard',
@@ -23,7 +23,7 @@ const routes: Routes = [
     path: 'auth',
     loadChildren: () => import('./user/user.module').then(m => m.UserModule)
   }
-  ];
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, {useHash: true, scrollPositionRestoration: 'top'})],
