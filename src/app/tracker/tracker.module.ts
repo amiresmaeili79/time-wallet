@@ -13,13 +13,13 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
 import {NgxMaterialTimepickerModule} from "ngx-material-timepicker";
 import {MatButtonModule} from "@angular/material/button";
-import {TrackerService} from "../services/tracker.service";
+import {TrackerService} from "../shared/services/tracker.service";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import { TaskComponent } from './Tasks/task/task.component';
 import {MatCardModule} from "@angular/material/card";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {MatTooltipModule} from "@angular/material/tooltip";
-import {TokenInterceptor} from "../services/token.interceptor";
+import {TokenInterceptor} from "../shared/services/token.interceptor";
 import {ProjectsComponent} from "./projects/projects.component";
 
 

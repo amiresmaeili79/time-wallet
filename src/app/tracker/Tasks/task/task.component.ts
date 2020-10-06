@@ -1,8 +1,8 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Task} from "../../../models/task.model";
+import {Task} from "../../../shared/models/task.model";
 import {TimeInterval} from "rxjs";
 import {formatDate} from "@angular/common";
-import {TrackerService} from "../../../services/tracker.service";
+import {TrackerService} from "../../../shared/services/tracker.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({

@@ -1,0 +1,92 @@
+.loading-page {
+  position: absolute;
+  top: 64px;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: #424242;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  span {
+    margin-top: 2rem;
+  }
+}
+$spCol: #8bc34a;
+.sp.sp-slices {
+  border-radius: 50%;
+  border-top: 32px rgba($spCol, 0.75) solid;
+  border-left: 32px rgba($spCol, 0.25) solid;
+  border-bottom: 32px rgba($spCol, 0.25) solid;
+  border-right: 32px rgba($spCol, 0.25) solid;
+  -webkit-animation: spSlices 1s infinite linear;
+  animation: spSlices 1s infinite linear;
+}
+
+@-webkit-keyframes spSlices {
+  0% {
+    border-top: 32px rgba($spCol, 0.75) solid;
+    border-right: 32px rgba($spCol, 0.25) solid;
+    border-bottom: 32px rgba($spCol, 0.25) solid;
+    border-left: 32px rgba($spCol, 0.25) solid;
+  }
+  25% {
+    border-top: 32px rgba($spCol, 0.25) solid;
+    border-right: 32px rgba($spCol, 0.75) solid;
+    border-bottom: 32px rgba($spCol, 0.25) solid;
+    border-left: 32px rgba($spCol, 0.25) solid;
+  }
+  50% {
+    border-top: 32px rgba($spCol, 0.25) solid;
+    border-right: 32px rgba($spCol, 0.25) solid;
+    border-bottom: 32px rgba($spCol, 0.75) solid;
+    border-left: 32px rgba($spCol, 0.25) solid;
+  }
+  75% {
+    border-top: 32px rgba($spCol, 0.25) solid;
+    border-right: 32px rgba($spCol, 0.25) solid;
+    border-bottom: 32px rgba($spCol, 0.25) solid;
+    border-left: 32px rgba($spCol, 0.75) solid;
+  }
+  100% {
+    border-top: 32px rgba($spCol, 0.75) solid;
+    border-right: 32px rgba($spCol, 0.25) solid;
+    border-bottom: 32px rgba($spCol, 0.25) solid;
+    border-left: 32px rgba($spCol, 0.25) solid;
+  }
+}
+
+@keyframes spSlices {
+  0% {
+    border-top: 32px rgba($spCol, 0.75) solid;
+    border-right: 32px rgba($spCol, 0.25) solid;
+    border-bottom: 32px rgba($spCol, 0.25) solid;
+    border-left: 32px rgba($spCol, 0.25) solid;
+  }
+  25% {
+    border-top: 32px rgba($spCol, 0.25) solid;
+    border-right: 32px rgba($spCol, 0.75) solid;
+    border-bottom: 32px rgba($spCol, 0.25) solid;
+    border-left: 32px rgba($spCol, 0.25) solid;
+  }
+  50% {
+    border-top: 32px rgba($spCol, 0.25) solid;
+    border-right: 32px rgba($spCol, 0.25) solid;
+    border-bottom: 32px rgba($spCol, 0.75) solid;
+    border-left: 32px rgba($spCol, 0.25) solid;
+  }
+  75% {
+    border-top: 32px rgba($spCol, 0.25) solid;
+    border-right: 32px rgba($spCol, 0.25) solid;
+    border-bottom: 32px rgba($spCol, 0.25) solid;
+    border-left: 32px rgba($spCol, 0.75) solid;
+  }
+  100% {
+    border-top: 32px rgba($spCol, 0.75) solid;
+    border-right: 32px rgba($spCol, 0.25) solid;
+    border-bottom: 32px rgba($spCol, 0.25) solid;
+    border-left: 32px rgba($spCol, 0.25) solid;
+  }
+}

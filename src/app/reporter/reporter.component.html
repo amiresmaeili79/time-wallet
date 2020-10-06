@@ -45,6 +45,12 @@
           </mat-card-title>
           <mat-card-content>
             <h3>Total hours of work: {{totalHour}}</h3>
+            <h3>Work hours based on projects</h3>
+            <ul>
+              <li *ngFor="let p of pieChart">
+                {{p[1]}}: <b>{{numberToTime(p[2])}}</b>
+              </li>
+            </ul>
           </mat-card-content>
         </mat-card>
 

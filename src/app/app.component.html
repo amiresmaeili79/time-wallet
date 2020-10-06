@@ -13,7 +13,10 @@
       </mat-toolbar-row>
     </mat-toolbar>
     <mat-nav-list>
-      <a routerLink="{{item.url}}" *ngFor="let item of sideBar">
+      <a
+        (click)="sidenav.close()"
+        routerLink="{{item.url}}"
+        *ngFor="let item of sideBar">
         <mat-list-item >
           <mat-icon>
             {{item.icon}}
@@ -37,6 +40,7 @@
   </header>
 
   <main>
+    <app-loading-page *ngIf="loadingPage"></app-loading-page>
     <router-outlet></router-outlet>
   </main>
 </mat-sidenav-container>

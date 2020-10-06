@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import * as CanvasJS from './canvasjs.min.js';
-import {ReportService} from "../services/report.service";
-import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {formatDate} from "@angular/common";
-import {MatRadioChange} from "@angular/material/radio";
-import {TrackerService} from "../services/tracker.service";
-import {Project} from "../models/project.model";
+import * as CanvasJS from '../../assets/js/canvasjs.min.js';
+import {ReportService} from '../shared/services/report.service';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {formatDate} from '@angular/common';
+import {MatRadioChange} from '@angular/material/radio';
+import {TrackerService} from '../shared/services/tracker.service';
+import {Project} from '../shared/models/project.model';
+import {min} from 'rxjs/operators';
 
 @Component({
   selector: 'app-reporter',
@@ -24,18 +25,15 @@ export class ReporterComponent implements OnInit {
   constructor(
     private reportService: ReportService,
     private trackerService: TrackerService
-  ) { }
-
-  ngOnInit(): void {
+  ) {
     this.dateRange = new FormGroup({
       start_date: new FormControl(null, Validators.required),
       end_date: new FormControl(null, Validators.required),
       type: new FormControl('column', Validators.required)
     });
-    this.trackerService.getProjects().subscribe(
-      (value: any) => this.projects = value.projects.map(pro => new Project(pro.id, pro.name))
-    );
-    // this.getReports();
+  }
+
+  ngOnInit(): void {
   }
   getReports() {
     this.chartRendered = true;
@@ -61,15 +59,15 @@ export class ReporterComponent implements OnInit {
     );
   }
   renderChart(data: any[], type: string) {
-    let chart = new CanvasJS.Chart("chartContainer", {
+    const chart = new CanvasJS.Chart('chartContainer', {
       animationEnabled: true,
       exportEnabled: true,
       theme: 'dark2',
       title: {
-        text: "Working hours",
+        text: 'Working hours',
       },
       data: [{
-        type: type,
+        type,
         dataPoints: data
       }]
     });
@@ -78,22 +76,21 @@ export class ReporterComponent implements OnInit {
   }
 
   renderPieChart() {
+    console.log(this.pieChart);
     let totalSec = 0;
-    this.pieChart.map(i => totalSec+= i[0]);
-    console.log(totalSec);
+    this.pieChart.map(i => totalSec += i[0]);
     const dataPoints = this.pieChart.map(i => {
       return {
         y: (i[0] / totalSec * 100).toFixed(2),
-        label: i[1] ? this.getProjectName(i[1]): 'undefined'
-      }
+        label: i[1] ? i[1] : 'undefined'
+      };
     });
-    console.log(dataPoints);
-    const chart = new CanvasJS.Chart("pie-chart", {
+    const chart = new CanvasJS.Chart('pie-chart', {
       animationEnabled: true,
       exportEnabled: true,
       theme: 'dark1',
       title: {
-        text: "Projects working hours share",
+        text: 'Projects working hours share',
       },
       data: [{
         type: 'pie',
@@ -108,7 +105,10 @@ export class ReporterComponent implements OnInit {
   typeChanged(value: MatRadioChange) {
     this.dateRange.controls.type.setValue(value.value);
   }
-  getProjectName(id: number) {
-    return this.projects.filter(t => t.id === id)[0].name;
+  numberToTime(n: number): string {
+    let result = `${n - n % 1}:`;
+    const minute = ((n % 1) * 60).toFixed(0);
+    result += minute.length > 1 ? minute : '0' + minute;
+    return result;
   }
 }

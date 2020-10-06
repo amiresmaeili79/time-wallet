@@ -12,34 +12,38 @@ import {MatListModule} from "@angular/material/list";
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 import {SharedModule} from "./shared/shared.module";
-import {TokenInterceptor} from "./services/token.interceptor";
+import {TokenInterceptor} from "./shared/services/token.interceptor";
 import { StartPageComponent } from './start-page/start-page.component';
 import {UserModule} from "./user/user.module";
-import {UserService} from "./services/user.service";
+import {UserService} from "./shared/services/user.service";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
-import {TitleService} from "./services/title.service";
-import {HttpErrorInterceptor} from "./services/HttpErrorInterceptor"
+import {TitleService} from "./shared/services/title.service";
+import {HttpErrorInterceptor} from "./shared/services/HttpErrorInterceptor";
+import { LoadingPageComponent } from './loading-page/loading-page.component'
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
     AppComponent,
     StartPageComponent,
+    LoadingPageComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatCardModule,
-    HttpClientModule,
-    MatSidenavModule,
-    MatToolbarModule,
-    MatListModule,
-    MatButtonModule,
-    MatIconModule,
-    SharedModule,
-    UserModule,
-    MatSnackBarModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatCardModule,
+        HttpClientModule,
+        MatSidenavModule,
+        MatToolbarModule,
+        MatListModule,
+        MatButtonModule,
+        MatIconModule,
+        SharedModule,
+        UserModule,
+        MatSnackBarModule,
+        MatProgressSpinnerModule
+    ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

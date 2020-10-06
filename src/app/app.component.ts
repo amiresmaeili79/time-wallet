@@ -1,9 +1,10 @@
 import {Component} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {UserService} from './services/user.service';
-import {UserModel} from './models/user.model';
+import {UserService} from './shared/services/user.service';
+import {UserModel} from './shared/models/user.model';
 import {Router} from '@angular/router';
-import {TitleService} from './services/title.service';
+import {TitleService} from './shared/services/title.service';
+import {LoadingPageService} from './shared/services/loading-page.service';
 
 @Component({
   selector: 'app-root',
@@ -20,12 +21,15 @@ export class AppComponent {
   user: UserModel;
   sideBar: object[];
 
+  loadingPage: boolean;
   constructor(
     private http: HttpClient,
     public userService: UserService,
     private router: Router,
-    private titleService: TitleService
+    private titleService: TitleService,
+    private loadingPageService: LoadingPageService
   ) {
+
     if (this.userService.isLoggedIn()) {
       this.userService.getProfile().subscribe(
         (value: any) => this.userService.updateUser(new UserModel(value.user)),
@@ -37,6 +41,7 @@ export class AppComponent {
       this.handleSideBar(false);
       this.router.navigateByUrl('/auth/login').then();
     }
+
     this.userSub = this.userService.getUser().subscribe(
       value => {
         this.user = value;
@@ -47,7 +52,11 @@ export class AppComponent {
           this.handleSideBar(false);
         }
       });
+
     this.titleService.setPageDetail();
+    this.loadingPageService.getLoadingPage().subscribe(
+      value => this.loadingPage = value
+    );
   }
 
   handleSideBar(loggedIn: boolean) {
